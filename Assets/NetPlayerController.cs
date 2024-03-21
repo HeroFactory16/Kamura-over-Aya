@@ -52,11 +52,17 @@ public class NetPlayerController : NetworkBehaviour
         FlipCharacterRpc(actualInput);
     }
 
-    [Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.Server)]
     public void TakeDamagesRpc(int damages)
     {
         Debug.Log("I'm server!");
         lifePoints.Value -= damages;
+        SendDamagesAnimationRpc();
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void SendDamagesAnimationRpc()
+    {
         playerAnimator.SetTrigger("IsTakingDamages");
     }
 
