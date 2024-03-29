@@ -363,11 +363,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 937478864742151716, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.06
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 937478864742151716, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.43
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 937478864742151716, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
       propertyPath: m_LocalPosition.z
@@ -400,6 +400,10 @@ PrefabInstance:
     - target: {fileID: 937478864742151716, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105003548213378601, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
+      propertyPath: speed
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1529722152145726436, guid: 05c22d06783c5a241a243f31acf09e45, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -527,7 +531,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1279,7 +1283,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -86457509
+    DestinationState: 982162806
+    TransitionDuration: 0
+    TriggerNameHash: 1950834835
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -86457509
+    DestinationState: -1536307816
+    TransitionDuration: 0
+    TriggerNameHash: -1094788382
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -86457509
+    DestinationState: 1293176710
+    TransitionDuration: 0
+    TriggerNameHash: -313642711
+    TransitionIndex: 2
   m_Animator: {fileID: 1953952572}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

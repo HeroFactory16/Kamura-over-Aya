@@ -13,7 +13,8 @@ public class NetPlayerController : NetworkBehaviour
     public Animator playerAnimator;
     public SpriteRenderer playerSpriteRenderer;
     public NetworkVariable<int> lifePoints = new(3);
-    public BoxCollider2D attackCollider;
+    //public BoxCollider2D attackCollider;
+    public int attack = 5;
 
     // Start is called before the first frame update
     void Start()

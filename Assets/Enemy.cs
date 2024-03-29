@@ -10,11 +10,11 @@ public class Enemy : NetworkBehaviour
     public float speed = 5;
     public int attack = 2;
     public Animator flyingEyeAnimator;
-    public NetPlayerController player;
+    public NetworkVariable<int> lifePoints = new(3);
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<NetPlayerController>();
+
     }
 
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class Enemy : NetworkBehaviour
             position += Vector3.right * speed * Time.fixedDeltaTime;
             transform.position = position;
         }
+        SendDeathAnimationRpc();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,5 +45,35 @@ public class Enemy : NetworkBehaviour
                 Debug.Log("Ouch");
             }
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void TakeDamagesRpc(int damages)
+    {
+        Debug.Log("I'm flying eye server!");
+        lifePoints.Value -= damages;
+        SendDamagesAnimationRpc();
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void SendDamagesAnimationRpc()
+    {
+        flyingEyeAnimator.SetTrigger("IsAttacked");
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void SendDeathAnimationRpc()
+    {
+        if (lifePoints.Value <= 0)
+        {
+            flyingEyeAnimator.SetTrigger("IsDying");
+            speed = 0;
+        }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void DestroyOnDeathRpc()
+    {
+        Destroy(gameObject);
     }
 }
