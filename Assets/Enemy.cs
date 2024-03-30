@@ -10,7 +10,9 @@ public class Enemy : NetworkBehaviour
     public float speed = 5;
     public int attack = 2;
     public Animator flyingEyeAnimator;
+    public SpriteRenderer flyingEyeSprite;
     public NetworkVariable<int> lifePoints = new(3);
+    public bool isRotated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class Enemy : NetworkBehaviour
     {
         if (IsServer)
         {
+            if (isRotated)
+            {
+                speed *= -1f;
+            }
+
             var position = transform.position;
             position += Vector3.right * speed * Time.fixedDeltaTime;
             transform.position = position;
@@ -36,13 +43,28 @@ public class Enemy : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit!");
         if (IsServer)
         {
             if (collision.GetComponent<NetPlayerController>() != null)
             {
                 collision.GetComponent<NetPlayerController>().TakeDamagesRpc(attack);
                 Debug.Log("Ouch");
+            }
+        }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        Debug.Log("Name " + gameObject.name + " at position " + gameObject.transform.position);
+        if (flyingEyeSprite != null)
+        {
+            if (transform.position.x >= 0)
+            {
+                Debug.Log("Enemy " + gameObject.name + " can be fliped");
+                //flyingEyeSprite.flipX = true;
+                GetComponentInChildren<BoxCollider2D>().transform.Rotate(0, 180, 0);
+                isRotated = true;
             }
         }
     }

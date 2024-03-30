@@ -6,10 +6,11 @@ using UnityEngine;
 public class NetWorkAction : MonoBehaviour
 {
     public NetworkManager nm;
+    public Canvas UIContainer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIContainer = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -21,11 +22,13 @@ public class NetWorkAction : MonoBehaviour
     public void StartServer()
     {
         nm.StartHost();
+        UIContainer.enabled = false;
     }
 
     public void ConnectToServer()
     {
         nm.StartClient();
         nm.OnClientConnectedCallback += obj => Debug.Log("Connected: " + obj);
+        UIContainer.enabled = false;
     }
 }

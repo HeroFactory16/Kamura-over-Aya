@@ -12,9 +12,9 @@ public class NetPlayerController : NetworkBehaviour
     public NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>(Vector3.zero);
     public Animator playerAnimator;
     public SpriteRenderer playerSpriteRenderer;
-    public NetworkVariable<int> lifePoints = new(3);
-    //public BoxCollider2D attackCollider;
+    public NetworkVariable<int> lifePoints = new(30);
     public int attack = 5;
+    public int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -74,11 +74,11 @@ public class NetPlayerController : NetworkBehaviour
         {
             if (actualInput.x < 0)
             {
-                playerSpriteRenderer.flipX = true;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             if (actualInput.x > 0)
             {
-                playerSpriteRenderer.flipX = false;
+                transform.rotation = Quaternion.identity;
             }
         } 
     }
@@ -122,7 +122,7 @@ public class NetPlayerController : NetworkBehaviour
         base.OnNetworkSpawn();
         if (NetworkObject.IsLocalPlayer)
         {
-            Debug.Log("Name"+ gameObject.name);
+            Debug.Log("Name "+ gameObject.name);
             PIA = new PlayerInputAction();
             PIA.Enable();
             PIA.Player.Move.started += context => direction = context.ReadValue<Vector2>();

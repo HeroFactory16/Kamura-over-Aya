@@ -26,8 +26,14 @@ public class EnemyAttack : NetworkBehaviour
         {
             if (collision.GetComponent<NetPlayerController>() != null)
             {
-                EnemyAnimator.SetTrigger("IsPlayerDetected2");
+                SendAttackAnimationRpc();
             }
         }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    void SendAttackAnimationRpc()
+    {
+        EnemyAnimator.SetTrigger("IsPlayerDetected2");
     }
 }

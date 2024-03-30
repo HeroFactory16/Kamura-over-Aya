@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2064605937441870372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.06, y: 2.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3174361815
+  GlobalObjectIdHash: 4164383457
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -215,7 +215,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02794993, y: -0.015245318}
+  m_Offset: {x: 0.009191662, y: -0.017180622}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -226,7 +226,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44806075, y: 0.351506}
+  m_Size: {x: 0.43554658, y: 0.35208678}
   m_EdgeRadius: 0
 --- !u!114 &1105003548213378601
 MonoBehaviour:
@@ -245,8 +245,10 @@ MonoBehaviour:
   speed: 1
   attack: 2
   flyingEyeAnimator: {fileID: 3998582304753796049}
+  flyingEyeSprite: {fileID: 6253461514768980306}
   lifePoints:
     m_InternalValue: 3
+  isRotated: 0
 --- !u!95 &3998582304753796049
 Animator:
   serializedVersion: 5
@@ -334,7 +336,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6965821, y: -0.01124084}
+  m_Offset: {x: 0.80289793, y: -0.01124084}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -345,7 +347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7630868, y: 0.31993127}
+  m_Size: {x: 1.5504551, y: 0.31993127}
   m_EdgeRadius: 0
 --- !u!114 &4246549954735434663
 MonoBehaviour:
