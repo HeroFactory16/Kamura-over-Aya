@@ -13,6 +13,7 @@ public class Enemy : NetworkBehaviour
     public SpriteRenderer flyingEyeSprite;
     public NetworkVariable<int> lifePoints = new(3);
     public bool isRotated = false;
+    public GlobalScore globalScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +58,12 @@ public class Enemy : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         Debug.Log("Name " + gameObject.name + " at position " + gameObject.transform.position);
+
+        globalScore = FindObjectOfType<GlobalScore>();
         if (flyingEyeSprite != null)
         {
             if (transform.position.x >= 0)
             {
-                Debug.Log("Enemy " + gameObject.name + " can be fliped");
-                //flyingEyeSprite.flipX = true;
                 GetComponentInChildren<BoxCollider2D>().transform.Rotate(0, 180, 0);
                 isRotated = true;
             }
@@ -93,9 +94,18 @@ public class Enemy : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.Server)]
     public void DestroyOnDeathRpc()
     {
+        Debug.Log("Before destroy");
+        if (globalScore != null && IsServer)
+        {
+            Debug.Log("Before score incrementation");
+            globalScore.IncrementScoreRpc();
+            Debug.Log("After score");
+            //FindObjectOfType<NetworkObject>().Despawn();
+        }
+        Debug.Log("Right before destruction");
         Destroy(gameObject);
     }
 }

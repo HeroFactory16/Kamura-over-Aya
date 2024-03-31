@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4164383457
+  GlobalObjectIdHash: 3174361815
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -242,13 +242,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position:
     m_InternalValue: {x: 0, y: 0, z: 0}
-  speed: 1
+  speed: 0.5
   attack: 2
   flyingEyeAnimator: {fileID: 3998582304753796049}
   flyingEyeSprite: {fileID: 6253461514768980306}
   lifePoints:
     m_InternalValue: 3
   isRotated: 0
+  globalScore: {fileID: 8791721464981865068, guid: a8c52596090926d41b2f75eca87d3896, type: 3}
 --- !u!95 &3998582304753796049
 Animator:
   serializedVersion: 5

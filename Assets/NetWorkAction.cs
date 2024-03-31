@@ -10,7 +10,7 @@ public class NetWorkAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UIContainer = FindObjectOfType<Canvas>();
+
     }
 
     // Update is called once per frame

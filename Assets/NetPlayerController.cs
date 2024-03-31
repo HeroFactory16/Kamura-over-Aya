@@ -15,6 +15,7 @@ public class NetPlayerController : NetworkBehaviour
     public NetworkVariable<int> lifePoints = new(30);
     public int attack = 5;
     public int score = 0;
+    //public GameObject personalUI;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,12 @@ public class NetPlayerController : NetworkBehaviour
         Debug.Log("I'm server!");
         lifePoints.Value -= damages;
         SendDamagesAnimationRpc();
+    }
+
+    [Rpc(SendTo.Owner)]
+    public void DisplayHealthRpc()
+    {
+
     }
 
     [Rpc(SendTo.Everyone)]
@@ -134,6 +141,8 @@ public class NetPlayerController : NetworkBehaviour
             PIA.Player.Attack2.started += context => SetAttack2ServerRpc(true);
             PIA.Player.Attack2.canceled += context => SetAttack2ServerRpc(false);
             PIA.Player.Attack2.performed += context => SetAttack2ServerRpc(false);
+
+            //Instantiate(personalUI).GetComponent<NetworkObject>().Spawn();
         }
     }
 }
