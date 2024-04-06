@@ -62,11 +62,11 @@ public class NetPlayerController : NetworkBehaviour
         SendDamagesAnimationRpc();
     }
 
-    [Rpc(SendTo.Owner)]
-    public void DisplayHealthRpc()
-    {
+    //[Rpc(SendTo.Owner)]
+    //public void DisplayHealthRpc()
+    //{
 
-    }
+    //}
 
     [Rpc(SendTo.Everyone)]
     public void SendDamagesAnimationRpc()
