@@ -57,7 +57,7 @@ public class NetPlayerController : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TakeDamagesRpc(int damages)
     {
-        Debug.Log("I'm server!");
+        //Debug.Log("I'm server!");
         lifePoints.Value -= damages;
         SendDamagesAnimationRpc();
     }
@@ -141,8 +141,6 @@ public class NetPlayerController : NetworkBehaviour
             PIA.Player.Attack2.started += context => SetAttack2ServerRpc(true);
             PIA.Player.Attack2.canceled += context => SetAttack2ServerRpc(false);
             PIA.Player.Attack2.performed += context => SetAttack2ServerRpc(false);
-
-            //Instantiate(personalUI).GetComponent<NetworkObject>().Spawn();
         }
     }
 }

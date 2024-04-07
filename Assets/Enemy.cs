@@ -49,7 +49,7 @@ public class Enemy : NetworkBehaviour
             if (collision.GetComponent<NetPlayerController>() != null)
             {
                 collision.GetComponent<NetPlayerController>().TakeDamagesRpc(attack);
-                Debug.Log("Ouch");
+                //Debug.Log("Ouch");
             }
         }
     }
@@ -57,7 +57,7 @@ public class Enemy : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        Debug.Log("Name " + gameObject.name + " at position " + gameObject.transform.position);
+        //Debug.Log("Name " + gameObject.name + " at position " + gameObject.transform.position);
 
         globalScore = FindObjectOfType<GlobalScore>();
         if (flyingEyeSprite != null)
@@ -73,7 +73,7 @@ public class Enemy : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void TakeDamagesRpc(int damages)
     {
-        Debug.Log("I'm flying eye server!");
+        //Debug.Log("I'm flying eye server!");
         lifePoints.Value -= damages;
         SendDamagesAnimationRpc();
     }
@@ -97,15 +97,14 @@ public class Enemy : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void DestroyOnDeathRpc()
     {
-        Debug.Log("Before destroy");
+        //Debug.Log("Before destroy");
         if (globalScore != null && IsServer)
         {
-            Debug.Log("Before score incrementation");
+            //Debug.Log("Before score incrementation");
             globalScore.IncrementScoreRpc();
-            Debug.Log("After score");
-            //FindObjectOfType<NetworkObject>().Despawn();
+            //Debug.Log("After score");
         }
-        Debug.Log("Right before destruction");
+        //Debug.Log("Right before destruction");
         Destroy(gameObject);
     }
 }

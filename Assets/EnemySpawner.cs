@@ -6,11 +6,13 @@ using UnityEngine;
 public class EnemySpawner : NetworkBehaviour
 {
     public List<Enemy> enemies;
+    public List<float> possiblePosY;
     float elapsedTime;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        possiblePosY.Add(-4.5f);
+        possiblePosY.Add(4.5f);
     }
 
     // Update is called once per frame
@@ -31,16 +33,12 @@ public class EnemySpawner : NetworkBehaviour
     [Rpc(SendTo.Server)]
     void SpawnEnemyRpc()
     {
-        var enemy = Instantiate(enemies[Random.Range(0, enemies.Count)]);
+        var enemy = Instantiate(enemies[Random.Range(0, enemies.Count)]); // Instancie un ennemi aléatoire parmi les prefabs possibles d'ennemis
         var position = enemy.transform.position;
-
-        float posy = Random.Range(2, 13.5f);
-        if (posy > 4.5f)
-        {
-            posy -= 9f;
-        }
-        position += Vector3.up * Random.Range(-2.5f, 2.5f);
-        position += Vector3.right * posy;
+        
+        int posy = Random.Range(0, possiblePosY.Count);
+        position += Vector3.up * Random.Range(-1.8f, 1.75f);
+        position += Vector3.right * possiblePosY[posy];
         enemy.transform.position = position;
 
         var networkEnemy = enemy.GetComponent<NetworkObject>();

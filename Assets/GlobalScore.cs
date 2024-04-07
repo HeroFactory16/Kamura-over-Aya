@@ -16,7 +16,15 @@ public class GlobalScore : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void IncrementScoreRpc()
     {
-        Debug.Log("Score incrementation");
         score.Value += 1;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void DecrementScoreRpc()
+    {
+        if (score.Value > 0)
+        {
+            score.Value -= 1;
+        }
     }
 }

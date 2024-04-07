@@ -20,12 +20,12 @@ public class PlayerAttack : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enemy is in collider");
+        //Debug.Log("Enemy is in collider");
         if (IsServer)
         {
             if (collision.GetComponent<Enemy>() != null)
             {
-                Debug.Log("Enemy is attacked");
+                //Debug.Log("Enemy is attacked");
                 collision.GetComponent<Enemy>().TakeDamagesRpc(Parent.attack);
             }
         }

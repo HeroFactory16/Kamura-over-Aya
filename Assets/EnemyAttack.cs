@@ -21,7 +21,7 @@ public class EnemyAttack : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Is within range");
+        //Debug.Log("Is within range");
         if (IsServer)
         {
             if (collision.GetComponent<NetPlayerController>() != null)
