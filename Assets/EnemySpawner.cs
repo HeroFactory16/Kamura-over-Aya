@@ -23,7 +23,7 @@ public class EnemySpawner : NetworkBehaviour
             return;
         }
         elapsedTime += Time.deltaTime;
-        if (elapsedTime > 1)
+        if (elapsedTime > 2)
         {
             elapsedTime = 0;
             SpawnEnemyRpc();
